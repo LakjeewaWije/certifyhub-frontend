@@ -5,10 +5,10 @@ import './App.css'
 import PrivateRoute from './PrivateRoute';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './Home';
-import Login from './login';
+import Login from './Login';
 
 function App() {
-  const isLoggedIn = localStorage.getItem('jwtToken') ? true : false;
+  const isLoggedIn = localStorage.getItem('userId') ? true : false;
 
   const wrapPrivateRoute = (element: any, isLoggedIn: boolean) => {
     return (
