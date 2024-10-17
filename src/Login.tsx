@@ -20,7 +20,10 @@ export default function Login() {
         try {
             const response = await API.post(`login`, data);
             localStorage.setItem('userId', response.data.data.userId);
-            window.location.reload();
+            toast.success("Login Successful!")
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000)
         } catch (error: any) {
             toast.error(error.response.data.error);
         }
