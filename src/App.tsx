@@ -1,11 +1,8 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import PrivateRoute from './PrivateRoute';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Home from './Home';
-import Login from './Login';
+import Auth from './Auth';
 
 function App() {
   const isLoggedIn = localStorage.getItem('userId') ? true : false;
@@ -21,7 +18,7 @@ function App() {
     <Router>
       <Routes>
         <Route path="/*" element={wrapPrivateRoute(<Home />, isLoggedIn)} />
-        <Route path="/login/*" element={isLoggedIn ? <Navigate to="/home" /> : <Login />} />
+        <Route path="/auth/*" element={isLoggedIn ? <Navigate to="/home" /> : <Auth />} />
         <Route path="/home/*" element={wrapPrivateRoute(<Home />, isLoggedIn)} />
       </Routes>
     </Router>
