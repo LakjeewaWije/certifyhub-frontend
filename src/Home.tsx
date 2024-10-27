@@ -1,42 +1,55 @@
 import { useEffect, useState } from "react";
 import API from './api';
 import { ToastContainer, toast } from 'react-toastify';
+import Loader from "./Loader";
 const Home = () => {
-  const [certs, setCerts] = useState({} as any)
+  const [certs, setCerts] = useState({} as any);
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
     //fetch all certificates per user
     getCertificates()
   }, []);
 
   const getCertificates = async () => {
-    const response = await API.get(`certificate/get/all`);
-    console.log("response ", response);
+    setIsLoading(true);
+    try {
+      const response = await API.get(`certificate/get/all`);
+      console.log("response ", response);
 
-    const categorizedCertificates: any = {};
+      const categorizedCertificates: any = {};
 
-    response.data.data.forEach((cert: any) => {
-      if (!categorizedCertificates[cert.category]) {
-        categorizedCertificates[cert.category] = [];
-      }
-      categorizedCertificates[cert.category].push(cert);
-    });
-    setCerts(categorizedCertificates);
-    console.log(categorizedCertificates);
+      response.data.data.forEach((cert: any) => {
+        if (!categorizedCertificates[cert.category]) {
+          categorizedCertificates[cert.category] = [];
+        }
+        categorizedCertificates[cert.category].push(cert);
+      });
+      setCerts(categorizedCertificates);
+      console.log(categorizedCertificates);
+      setIsLoading(false);
+    } catch (error: any) {
+      setIsLoading(false);
+    }
+
   }
 
   const deleteCert = async (certToDelete: any) => {
+    setIsLoading(true);
     try {
       const response = await API.delete(`certificate/${certToDelete.certificateId}/remove`);
       console.log("response ", response);
-      toast.success("Delete Successful!")
-      getCertificates()
+      toast.success("Delete Successful!");
+      getCertificates();
     } catch (error: any) {
       toast.error(error.response.data.error);
+      setIsLoading(false);
     }
 
   }
 
   return <div>
+    <Loader show={isLoading}></Loader>
     <div id="header" className="flex justify-end gap-2">
       <div>
         <button className="bg-blue-500 text-white rounded-md px-2 py-1">Add New Certificate</button>

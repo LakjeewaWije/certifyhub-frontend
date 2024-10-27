@@ -4,6 +4,8 @@ import * as yup from "yup";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import API from './api';
+import Loader from "./Loader";
+import { useState } from "react";
 
 const schema = yup.object({
     email: yup.string().email().required(),
@@ -16,21 +18,26 @@ export default function Login() {
     const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: yupResolver(schema)
     });
+    const [isLoading, setIsLoading] = useState(false);
     const onSubmit = async (data: FormData) => {
+        setIsLoading(true);
         try {
             const response = await API.post(`login`, data);
             localStorage.setItem('userId', response.data.data.userId);
             toast.success("Login Successful!")
+            setIsLoading(false);
             setTimeout(() => {
                 window.location.reload();
-            }, 2000)
+            }, 1000)
         } catch (error: any) {
+            setIsLoading(false);
             toast.error(error.response.data.error);
         }
     }
 
     return (
         <>
+            <Loader show={isLoading}></Loader>
             <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
                 <div className="relative py-3 sm:max-w-xl sm:mx-auto">
                     <div
