@@ -16,7 +16,6 @@ export default function Certificate() {
     const updateData = location.state;
     const [isLoading, setIsLoading] = useState(false);
     const [categories, setCategories] = useState([] as any);
-    console.log("updateData ", updateData);
 
     const schema = yup.object({
         name: yup.string().required(),
@@ -56,7 +55,6 @@ export default function Certificate() {
 
 
     const onSubmit = async (data: FormData) => {
-        console.log(data, (data.uploaded_file as any)[0]);
         setIsLoading(true);
         const formData = new FormData();
 
@@ -92,7 +90,6 @@ export default function Certificate() {
         setIsLoading(true);
         try {
             const response = await API.get(`categories/get/all`);
-            console.log("response ", response.data.data);
             setCategories(response.data.data);
             setIsLoading(false);
         } catch (error: any) {

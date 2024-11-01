@@ -10,14 +10,14 @@ const Home = () => {
 
   useEffect(() => {
     //fetch all certificates per user
-    getCertificates()
+    getCertificates();
+    getUserDetails();
   }, []);
 
   const getCertificates = async () => {
     setIsLoading(true);
     try {
       const response = await API.get(`certificate/get/all`);
-      console.log("response ", response);
 
       const categorizedCertificates: any = {};
 
@@ -28,10 +28,21 @@ const Home = () => {
         categorizedCertificates[cert.category].push(cert);
       });
       setCerts(categorizedCertificates);
-      console.log(categorizedCertificates);
       setIsLoading(false);
     } catch (error: any) {
       setIsLoading(false);
+    }
+
+  }
+
+  const getUserDetails = async () => {
+    setIsLoading(true);
+    try {
+      const response = await API.get(`user/get`);
+
+      localStorage.setItem('userName', response.data.data.firstName + ' ' + response.data.data.lastName);
+
+    } catch (error: any) {
     }
 
   }
@@ -40,7 +51,6 @@ const Home = () => {
     setIsLoading(true);
     try {
       const response = await API.delete(`certificate/${certToDelete.certificateId}/remove`);
-      console.log("response ", response);
       toast.success("Delete Successful!");
       getCertificates();
     } catch (error: any) {
@@ -48,6 +58,15 @@ const Home = () => {
       setIsLoading(false);
     }
 
+  }
+
+  const generateLink = async () => {
+    const userId = localStorage.getItem('userId');
+    const userName = localStorage.getItem('userName');
+    let originUrl = window.location.origin + '/';
+    originUrl = originUrl + `all?userId=${userId}&name=${userName}`;
+    navigator.clipboard.writeText(originUrl);
+    toast.success("Shareable link copied to clip board!");
   }
 
   return <div>
@@ -58,7 +77,11 @@ const Home = () => {
       </div>
       <div>
         <button className="bg-slate-800 text-white rounded-md px-2 py-1"
-          onClick={() => { localStorage.removeItem('userId'); window.location.reload(); }}>Logout</button>
+          onClick={() => { localStorage.removeItem('userId'); localStorage.removeItem('userName'); window.location.reload(); }}>Logout</button>
+      </div>
+      <div>
+        <button className="bg-slate-800 text-white rounded-md px-2 py-1"
+          onClick={() => generateLink()}>Share Profile</button>
       </div>
     </div>
     <div id="content">
