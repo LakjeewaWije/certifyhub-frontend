@@ -36,7 +36,6 @@ const Home = () => {
   }
 
   const getUserDetails = async () => {
-    setIsLoading(true);
     try {
       const response = await API.get(`user/get`);
 
@@ -80,7 +79,7 @@ const Home = () => {
           onClick={() => { localStorage.removeItem('userId'); localStorage.removeItem('userName'); window.location.reload(); }}>Logout</button>
       </div>
       <div>
-        <button className="bg-slate-800 text-white rounded-md px-2 py-1"
+        <button id="shareProfileBtn" className="bg-slate-800 text-white rounded-md px-2 py-1"
           onClick={() => generateLink()}>Share Profile</button>
       </div>
     </div>

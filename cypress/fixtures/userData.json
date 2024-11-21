@@ -1,0 +1,12 @@
+{
+    "login": {
+        "email": "wije@gmail.com",
+        "password": "1234"
+    },
+    "signup": {
+        "firstName" : "keto",
+        "lastName" : "LM",
+        "email": "keto@gmail.com",
+        "password": "1234"
+    }
+}

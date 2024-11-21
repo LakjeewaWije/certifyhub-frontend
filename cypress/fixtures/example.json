@@ -1,0 +1,9 @@
+{
+  "userData" :{
+    "email" : "wije@gmail.com",
+    "password" : "1234"
+  },
+  "app":{
+    "baseUrl": "http://localhost:5173/auth"
+  }
+}
