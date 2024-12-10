@@ -1,4 +1,4 @@
-describe('go to certifyhub web app', () => {
+describe('aignup to certifyhub', () => {
   beforeEach(() => {
     // Visit the login page using the base URL from configuration 
     cy.visit('http://localhost:5173/auth');

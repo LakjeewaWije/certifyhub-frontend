@@ -70,7 +70,8 @@ const Home = () => {
 
   return <div>
     <Loader show={isLoading}></Loader>
-    <div id="header" className="flex justify-end gap-2">
+    <div><h1 className="font-medium text-blue-800 bg-slate-200 p-2">Welcome, {localStorage.getItem('userName')}</h1></div>
+    <div id="header" className="flex justify-end gap-2 pt-5">
       <div>
         <NavLink to="/certificate" className="bg-blue-500 text-white rounded-md px-2 py-1 block">Add New Certificate</NavLink>
       </div>
@@ -97,7 +98,7 @@ const Home = () => {
               {key}
             </h1>
             {certs[key].map((certData: any, index: number) =>
-              <div key={index}>
+              <div key={index} id={'certi' + index}>
                 <div className="mx-auto mt-11 w-96 transform overflow-hidden rounded-lg bg-white dark:bg-slate-800 shadow-md duration-300 hover:scale-105 hover:shadow-lg">
                   <div className="p-4">
                     <h2 className="mb-2 text-xl font-medium dark:text-white text-gray-900 underline">{certData.name}</h2>
