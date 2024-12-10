@@ -1,7 +1,7 @@
 describe('go to certifyhub web app', () => {
   beforeEach(() => {
     // Visit the login page using the base URL from configuration 
-    cy.visit('http://localhost:5173/home');
+    cy.visit('https://certifyhub-frontend.vercel.app/home');
 
     cy.fixture('userData').then((userData) => {
       const loginUser = userData.login;
@@ -25,7 +25,7 @@ describe('go to certifyhub web app', () => {
     cy.get('#uploaded_file').selectFile('test-upload.pdf')
 
     cy.get('input[type="submit"]').click();
-    cy.wait(2000)
+    cy.wait(4000)
     cy.contains('Test Certificate Name').should('exist');
   });
 
@@ -36,12 +36,12 @@ describe('go to certifyhub web app', () => {
     cy.get('#certi0').within(() => {
       cy.get('a').contains('Edit').click();
     });
-    cy.wait(2000)
+    cy.wait(4000)
     cy.url().should('include', '/certificate');
     cy.get('#name').clear().type('Test Certificate Name New');
 
     cy.get('input[type="submit"]').click();
-    cy.wait(2000)
+    cy.wait(4000)
     cy.contains('Test Certificate Name New').should('exist');
   });
 

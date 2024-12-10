@@ -1,7 +1,7 @@
 describe('aignup to certifyhub', () => {
   beforeEach(() => {
     // Visit the login page using the base URL from configuration 
-    cy.visit('http://localhost:5173/auth');
+    cy.visit('https://certifyhub-frontend.vercel.app/auth');
   });
 
   it('should display the signup form', () => {

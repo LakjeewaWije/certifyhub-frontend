@@ -1,3 +1,19 @@
+# This project is made for CA1 of B9IS123 PROGRAMMING FOR INFORMATION SYSTEMS (B9IS123_2425_TMD1S)
+
+## How to run
+
+npm install
+
+npm run dev
+
+## How to run test
+
+npm run cy:open
+
+## Front End is deployed in
+
+https://certifyhub-frontend.vercel.app/auth
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
