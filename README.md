@@ -10,9 +10,10 @@ npm run dev
 
 npm run cy:open
 
-## Front End is deployed in
+## Hosted Url
 
 https://certifyhub-frontend.vercel.app/auth
+
 
 # React + TypeScript + Vite
 
