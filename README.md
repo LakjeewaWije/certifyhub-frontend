@@ -8,7 +8,7 @@ npm run dev
 
 ## How to run test
 
-npm run cy:open
+npm run test
 
 ## Hosted Url
 
