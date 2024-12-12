@@ -24,6 +24,7 @@ https://www.npmjs.com/package/react-toastify
 https://tailwindflex.com/@samuel33/border-gradient
 https://www.npmjs.com/package/axios
 https://axios-http.com/docs/interceptors
+https://learn.cypress.io/advanced-cypress-concepts/integration-and-api-tests
 
 
 # React + TypeScript + Vite
