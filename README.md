@@ -15,6 +15,17 @@ npm run test
 https://certifyhub-frontend.vercel.app/auth
 
 
+## References
+
+https://medium.com/@miahossain8888/how-to-create-a-react-app-with-vite-571883b100ef
+https://www.creative-tim.com/twcomponents/component/login-form-with-floating-labels
+https://react-hook-form.com/get-started
+https://www.npmjs.com/package/react-toastify
+https://tailwindflex.com/@samuel33/border-gradient
+https://www.npmjs.com/package/axios
+https://axios-http.com/docs/interceptors
+
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
